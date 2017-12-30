@@ -1,6 +1,6 @@
 {
   "name": "ng-appversion",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Reads the version from your packages.json and saves it in a .ts file you can include within your Angular application.",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "repository": "https://github.com/saitho/ng-appversion",
   "dependencies": {
     "colors": "^1.1.2",
-    "git-describe": "^4.0.2"
+    "git-describe": "^4.0.2",
+    "yargs": "^10.0.3"
   }
 }
