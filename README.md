@@ -24,10 +24,12 @@ With that setup the file is updated when `npm start` and `npm run-script build` 
 
 ## Receiving the versions
 
-The script generates a TypeScript file at the location: `./node_modules/ng-appversion/_versions.ts`.
+The script generates a TypeScript file at the location: `./src/_versions.ts`.
+You can change that by passing the option *--file*, e.g. `node ./node_modules/ng-appversion/index.js --file=src/config/version.ts`.
+
 You'll be able to import the values just like any other package:
 ```
-import { version } from 'ng-appversion/_versions';
+import { version } from '../_versions';
 ```
 
 The file will contain two version numbers:
@@ -55,7 +57,7 @@ export const environment = {
 
 *environments/environment.staging.ts*
 ```
-import { versionLong } from 'ng-appversion/_versions';
+import { versionLong } from '../_versions';
 export const environment = {
   production: false,
   version: versionLong,
@@ -64,7 +66,7 @@ export const environment = {
 
 *environments/environment.prod.ts*
 ```
-import { version } from 'ng-appversion/_versions';
+import { version } from '../_versions';
 export const environment = {
   production: true,
   version: version,
