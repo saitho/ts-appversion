@@ -25,8 +25,16 @@ const versionFilePath = path.join(versionFile);
 
 let src = 'export const version = \'' + appVersion + '\';\n';
 
-if (fs.existsSync(gitFolder)) {
+let enableGit = false;
+if (argv.hasOwnProperty('force-git')) {
+    enableGit = true;
+    console.log('[NgAppVersion] Git repository forced. Getting current commit information.');
+} else if (fs.existsSync(gitFolder)) {
+    enableGit = true;
     console.log('[NgAppVersion] Git repository detected. Getting current commit information.');
+}
+
+if (enableGit) {
     const git = require('git-describe');
     try {
         const info = git.gitDescribeSync({ longSemver: true });
