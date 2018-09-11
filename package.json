@@ -17,6 +17,6 @@
   "dependencies": {
     "colors": "^1.1.2",
     "git-describe": "^4.0.2",
-    "yargs": "^10.0.3"
+    "yargs": "^12.0.2"
   }
 }
