@@ -6,7 +6,7 @@ const colors = require('colors/safe');
 const fs = require('fs');
 const argv = require('yargs').argv;
 const packageFile = __dirname + '/../../package.json';
-const gitFolder = __dirname + '/../../.git/';
+let gitFolder = __dirname + '/../../.git/';
 
 if (!fs.existsSync(packageFile)) {
     console.log('[NgAppVersion] ' + colors.yellow('Cannot find packages.json in root path. Skipping...'));
@@ -26,6 +26,9 @@ const versionFilePath = path.join(versionFile);
 let src = 'export const version = \'' + appVersion + '\';\n';
 
 let enableGit = false;
+if (argv.hasOwnProperty('git')) {
+    gitFolder = path.resolve(__dirname, argv.git);
+}
 if (argv.hasOwnProperty('force-git')) {
     enableGit = true;
     console.log('[NgAppVersion] Git repository forced. Getting current commit information.');
