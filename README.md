@@ -26,7 +26,7 @@ With that setup the file is updated when `npm start` and `npm run-script build` 
 
 The script generates a TypeScript file at the location: `./src/_versions.ts`.
 You can change that by passing the option *--file*, e.g. `node ./node_modules/ng-appversion/index.js --file=src/config/version.ts`.
-If your .git folder is not in the same folder as your node_modules folder, automatic detection won't work. In that case you can add *--force-git* to force detection.
+If your .git folder is not in the same folder as your node_modules folder, automatic detection won't work. In that case you can add *--force-git* to force detection. If your .git folder has another location you can use *--git* to specify the path.
 
 You'll be able to import the values just like any other package:
 ```
