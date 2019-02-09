@@ -1,5 +1,9 @@
 # NgAppVersion
 
+[![npm version](https://img.shields.io/npm/v/ng-appversion.svg)](https://www.npmjs.com/package/ng-appversion)
+[![npm license](https://img.shields.io/npm/l/ng-appversion.svg)](https://www.npmjs.com/package/ng-appversion)
+[![Known Vulnerabilities](https://snyk.io/test/github/saitho/ng-appversion/badge.svg?targetFile=package.json)](https://snyk.io/test/github/saitho/ng-appversion?targetFile=package.json)
+
 This package extracts version information from your package.json and Git (if configured) and saves it into a TypeScript file.
 You can then access that TypeScript file from your Angular application and display the version in your Angular app.
 
