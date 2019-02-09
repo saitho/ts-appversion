@@ -56,7 +56,7 @@ In the following example:
 - the production environment will display the simple notation
 
 *environments/environment.ts*
-```
+```typescript
 export const environment = {
   production: false,
   version: '',
@@ -64,7 +64,7 @@ export const environment = {
 ```
 
 *environments/environment.staging.ts*
-```
+```typescript
 import { versionLong } from '../_versions';
 export const environment = {
   production: false,
@@ -73,7 +73,7 @@ export const environment = {
 ```
 
 *environments/environment.prod.ts*
-```
+```typescript
 import { version } from '../_versions';
 export const environment = {
   production: true,
@@ -82,7 +82,7 @@ export const environment = {
 ```
 
 From there you can access the version inside the Component which should display the version, e.g.:
-```
+```typescript
 import { Component } from '@angular/core';
 import { environment } from '../environments/environment';
 @Component({
