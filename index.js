@@ -5,23 +5,31 @@ const path = require('path');
 const colors = require('colors/safe');
 const fs = require('fs');
 const argv = require('yargs').argv;
-const packageFile = __dirname + '/../../package.json';
-let gitFolder = __dirname + '/../../.git/';
+let rootPath = path.join('..', '..');
+if (argv.hasOwnProperty('root')) {
+    rootPath = argv.root;
+}
+const packageFile = path.join(__dirname, rootPath, 'package.json');
+let gitFolder = path.join(__dirname, rootPath, '.git');
+
+// TODO: remove with v2
+if (argv.hasOwnProperty('force-git')) {
+    console.log('Note: The use of --force-git is ' + colors.red('deprecated') + ' and will be removed with version 2. Use --git instead to point to the .git directory.');
+}
 
 if (!fs.existsSync(packageFile)) {
-    console.log('[NgAppVersion] ' + colors.yellow('Cannot find packages.json in root path. Skipping...'));
+    console.log('[NgAppVersion] ' + colors.yellow('Cannot find package.json in root path. Skipping...'));
     return;
 }
 
 const appVersion = require(packageFile).version;
 
-let versionFile = __dirname + '/../../src/_versions.ts';
+let versionFile = path.join(__dirname, rootPath, 'src', '_versions.ts');
 if (argv.hasOwnProperty('file')) {
-    versionFile = __dirname + '/../../' + argv.file;
+    versionFile = path.join(__dirname, rootPath, argv.file);
 }
 
 console.log(colors.cyan('\nWriting version strings to ' + versionFile));
-const versionFilePath = path.join(versionFile);
 
 let src = 'export const version = \'' + appVersion + '\';\n';
 
@@ -30,6 +38,8 @@ if (argv.hasOwnProperty('git')) {
     gitFolder = path.resolve(__dirname, argv.git);
 }
 if (argv.hasOwnProperty('force-git')) {
+    // TODO: remove with v2
+    // this option is required e.g. when the repository in question is a sub repository
     enableGit = true;
     console.log('[NgAppVersion] Git repository forced. Getting current commit information.');
 } else if (fs.existsSync(gitFolder)) {
@@ -57,8 +67,8 @@ if (enableGit) {
 
 // ensure version module pulls value from package.json
 console.log('[NgAppVersion] ' + colors.green('Updating application version ') + colors.yellow(appVersion));
-console.log('[NgAppVersion] ' + colors.green('Writing version module to ') + colors.yellow(versionFilePath));
-fs.writeFile(versionFilePath, src, { flat: 'w' }, function (err) {
+console.log('[NgAppVersion] ' + colors.green('Writing version module to ') + colors.yellow(versionFile));
+fs.writeFile(versionFile, src, { flat: 'w' }, function (err) {
     if (err) {
         return console.log('[NgAppVersion] ' + colors.red(err));
     }
