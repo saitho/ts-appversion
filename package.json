@@ -1,6 +1,6 @@
 {
   "name": "ng-appversion",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Reads the version from your packages.json and saves it in a .ts file you can include within your Angular application.",
   "main": "index.js",
   "scripts": {
