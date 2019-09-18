@@ -68,7 +68,7 @@ if (enableGit) {
 // ensure version module pulls value from package.json
 console.log('[NgAppVersion] ' + colors.green('Updating application version ') + colors.yellow(appVersion));
 console.log('[NgAppVersion] ' + colors.green('Writing version module to ') + colors.yellow(versionFile));
-fs.writeFile(versionFile, src, { flat: 'w' }, function (err) {
+fs.writeFile(versionFile, src, function (err) {
     if (err) {
         return console.log('[NgAppVersion] ' + colors.red(err));
     }
