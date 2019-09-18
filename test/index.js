@@ -58,7 +58,7 @@ describe('appversion', function() {
     });
 
     it('should succeed with default settings and without a Git repository', function(done) {
-        fs.mkdirSync(path.join(repoDir, 'src'));
+        fs.mkdirSync(path.join(repoDir, 'src'), {recursive: true});
         fs.writeFileSync(path.join(repoDir, 'package.json'), '{"version": "1.0.0"}');
         exec('node index.js --root=./test/test-repo', (err, stdout, stderr) => {
             if (err) {
