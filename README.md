@@ -49,6 +49,7 @@ The file will contain two version numbers:
 
 * **version** is the version from the packages.json (e.g. v1.0.0)
 * **versionLong** is the version from the packages.json PLUS the Hash of the current Git-Commit (e.g. v1.0.0-g63962e3) - will only be generated if your repository is a Git Repository
+* **versionDate** is the timestamp in ISO format when the compilation/package started.
 
 ## Environment-related versions
 
@@ -56,15 +57,16 @@ In some cases it might be better to not display the version number or only the s
 You can use the environments to display different version informations.
 
 In the following example:
-- the dev environment will not display a version
+- the dev environment will display the version timestamp
 - the staging environemnt will diplay the long version (with the Commit hash)
 - the production environment will display the simple notation
 
 *environments/environment.ts*
 ```typescript
+import { versionDate } from '../_versions';
 export const environment = {
   production: false,
-  version: '',
+  version: versionDate,
 };
 ```
 

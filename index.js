@@ -65,6 +65,8 @@ if (enableGit) {
     }
 }
 
+src += 'export const versionDate = \'' + new Date().toISOString() + '\';\n';
+
 // ensure version module pulls value from package.json
 console.log('[NgAppVersion] ' + colors.green('Updating application version ') + colors.yellow(appVersion));
 console.log('[NgAppVersion] ' + colors.green('Writing version module to ') + colors.yellow(versionFile));
