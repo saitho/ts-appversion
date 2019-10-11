@@ -10,11 +10,11 @@ if (argv.hasOwnProperty('root')) {
     rootPath = argv.root;
 }
 const packageFile = path.join(__dirname, rootPath, 'package.json');
-let gitFolder = path.join(__dirname, rootPath, '.git');
+let gitFolder = path.join(__dirname, rootPath);
 
 // TODO: remove with v2
 if (argv.hasOwnProperty('force-git')) {
-    console.log('Note: The use of --force-git is ' + colors.red('deprecated') + ' and will be removed with version 2. Use --git instead to point to the .git directory.');
+    console.log('[NgAppVersion] ' + colors.blue('Deprecation notice: ') + colors.red('The use of --force-git is will be removed with version 2. Use --git instead to point to the folder where the .git folder resides.'));
 }
 
 if (!fs.existsSync(packageFile)) {
@@ -35,6 +35,16 @@ let src = 'export const version = \'' + appVersion + '\';\n';
 
 let enableGit = false;
 if (argv.hasOwnProperty('git')) {
+
+    var pathChunks = path.resolve(argv.git).split(path.sep);
+    if (pathChunks.length) {
+        const lastChunk = pathChunks.pop();
+        if (lastChunk === '.git') {
+            console.log('[NgAppVersion] ' + colors.blue('Deprecation notice: ') + colors.red('--git is now supposed to point to the directory where the .git folder resides in, instead of the .git folder itself.'));
+            argv.git = pathChunks.join(path.sep);
+        }
+    }
+
     gitFolder = path.resolve(__dirname, argv.git);
 }
 if (argv.hasOwnProperty('force-git')) {
@@ -50,7 +60,7 @@ if (argv.hasOwnProperty('force-git')) {
 if (enableGit) {
     const git = require('git-describe');
     try {
-        const info = git.gitDescribeSync({ longSemver: true });
+        const info = git.gitDescribeSync(gitFolder, { longSemver: true });
         let versionWithHash = appVersion;
         if (info.hasOwnProperty('hash')) {
             versionWithHash = versionWithHash + '-' + info.hash;

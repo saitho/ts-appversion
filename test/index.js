@@ -52,7 +52,7 @@ describe('appversion', function() {
                 done(stderr);
                 return;
             }
-            expect(stdout).to.contains('deprecated');
+            expect(stdout).to.contains('Deprecation notice');
             done();
         });
     });
