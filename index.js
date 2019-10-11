@@ -66,6 +66,18 @@ if (enableGit) {
             versionWithHash = versionWithHash + '-' + info.hash;
             src += 'export const gitCommitHash = \'' + info.hash + '\';\n';
             console.log('[NgAppVersion] ' + colors.green('Git Commit hash: ') + colors.yellow(info.hash));
+
+            // Get date of commit
+            const gitCommitInfo = require('git-commit-info');
+            const gitCommit = gitCommitInfo({
+                cwd: gitFolder,
+                commit: info.hash.substr(1),
+            });
+            if (gitCommit.hasOwnProperty('date')) {
+                const gitDateString = new Date(gitCommit.date).toISOString();
+                console.log('[NgAppVersion] ' + colors.green('Git Commit date: ') + colors.yellow(gitDateString));
+                src += 'export const gitCommitDate = \'' + gitDateString + '\';\n';
+            }
         }
         if (info.hasOwnProperty('tag')) {
             console.log('[NgAppVersion] ' + colors.green('Git tag: ') + colors.yellow(info.tag));
