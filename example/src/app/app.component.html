@@ -44,7 +44,7 @@
       </g>
     </svg>
 
-    <span>{{ title }} app is running!</span>
+    <span>This app is running with version {{ version }}</span>
 
     <svg id="rocket-smoke" alt="Rocket Ship Smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632" viewBox="0 0 516.119 1083.632">
       <path id="Path_40" data-name="Path 40" d="M644.6,141S143.02,215.537,147.049,870.207s342.774,201.755,342.774,201.755S404.659,847.213,388.815,762.2c-27.116-145.51-11.551-384.124,271.9-609.1C671.15,139.365,644.6,141,644.6,141Z" transform="translate(-147.025 -140.939)" fill="#f5f5f5"/>
@@ -52,10 +52,19 @@
 
   </div>
 
-  <!-- Footer -->
-  <footer>
-    This app is running with version {{ version }}
-  </footer>
+  <div>
+    <p>
+      The version that is displayed here depends on the context this app was started with.<br />
+      <i>Note:</i> The Git tag and hash are taken from the ng-appversion repository because this example resides in that.
+    </p>
+
+    <ul>
+      <li><strong>no context:</strong> The displayed version should be the <i>latest Git tag</i> from ng-appversion project (e.g. v1.3.0)</li>
+      <li><strong>production:</strong> The displayed version should be <i>1.0.0</i></li>
+      <li><strong>development:</strong> The displayed version should be <i>1.0.0</i> with the latest <i>hash</i> of the ng-appversion project (e.g. 1.0.0-gda1e67f)</li>
+    </ul>
+  </div>
+
 
 </div>
 
