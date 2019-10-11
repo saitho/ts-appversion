@@ -36,7 +36,7 @@ let src = 'export const version = \'' + appVersion + '\';\n';
 let enableGit = false;
 if (argv.hasOwnProperty('git')) {
 
-    var pathChunks = path.resolve(argv.git).split(path.sep);
+    const pathChunks = path.resolve(argv.git).split(path.sep);
     if (pathChunks.length) {
         const lastChunk = pathChunks.pop();
         if (lastChunk === '.git') {
@@ -72,11 +72,7 @@ if (enableGit) {
             src += 'export const gitTag = \'' + info.tag + '\';\n';
         }
         console.log('[NgAppVersion] ' + colors.green('Long Git version: ') + colors.yellow(versionWithHash));
-        src += 'export const gitVersionLong = \'' + versionWithHash + '\';\n';
-
-        console.log('[NgAppVersion] ' + colors.blue('Deprecation notice: ') + colors.grey('Using the variable "versionLong" is deprecated. Use "gitVersionLong" instead.'));
-        src += '// DEPRECATION: versionLong is deprecated - use gitVersionLong instead\n';
-        src += 'export const versionLong = gitVersionLong;\n';
+        src += 'export const versionLong = \'' + versionWithHash + '\';\n';
     } catch(e) {
         if (new RegExp(/Not a git repository/).test(e.message)) {
             console.log('[NgAppVersion] ' + colors.red('Not a Git repository.'));

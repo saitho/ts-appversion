@@ -101,3 +101,5 @@ export class AppComponent {
   version = environment.version ? 'v' + environment.version : '';
 }
 ```
+
+Check out [the example/ directory](example/) for a working example Angular application.
