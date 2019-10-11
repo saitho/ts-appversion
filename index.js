@@ -9,8 +9,12 @@ let rootPath = path.join('..', '..');
 if (argv.hasOwnProperty('root')) {
     rootPath = argv.root;
 }
-const packageFile = path.join(__dirname, rootPath, 'package.json');
-let gitFolder = path.join(__dirname, rootPath);
+let projectFolder = path.join(__dirname, rootPath);
+if (path.isAbsolute(rootPath)) {
+    projectFolder = rootPath;
+}
+const packageFile = path.join(projectFolder, 'package.json');
+let gitFolder = projectFolder;
 
 // TODO: remove with v2
 if (argv.hasOwnProperty('force-git')) {
@@ -22,10 +26,8 @@ if (!fs.existsSync(packageFile)) {
     return;
 }
 
-let versionFile = path.join(__dirname, rootPath, 'src', '_versions.ts');
-if (argv.hasOwnProperty('file')) {
-    versionFile = path.join(__dirname, rootPath, argv.file);
-}
+const outputFile = argv.hasOwnProperty('file') ? argv.file : path.join('src', '_versions.ts');
+const versionFile = path.join(projectFolder, outputFile);
 
 // pull version from package.json
 const appVersion = require(packageFile).version;
@@ -45,14 +47,17 @@ if (argv.hasOwnProperty('git')) {
         }
     }
 
-    gitFolder = path.resolve(__dirname, argv.git);
+    gitFolder = path.resolve(projectFolder, argv.git);
+    if (path.isAbsolute(argv.git)) {
+        gitFolder = argv.git;
+    }
 }
 if (argv.hasOwnProperty('force-git')) {
     // TODO: remove with v2
     // this option is required e.g. when the repository in question is a sub repository
     enableGit = true;
     console.log('[NgAppVersion] Git repository forced. Getting current commit information.');
-} else if (fs.existsSync(gitFolder)) {
+} else if (fs.existsSync(path.join(gitFolder, '.git'))) {
     enableGit = true;
     console.log('[NgAppVersion] Git repository detected. Getting current commit information.');
 }
@@ -68,23 +73,27 @@ if (enableGit) {
             console.log('[NgAppVersion] ' + colors.green('Git Commit hash: ') + colors.yellow(info.hash));
 
             // Get date of commit
-            const gitCommitInfo = require('git-commit-info');
-            const gitCommit = gitCommitInfo({
-                cwd: gitFolder,
-                commit: info.hash.substr(1),
-            });
-            if (gitCommit.hasOwnProperty('date')) {
-                const gitDateString = new Date(gitCommit.date).toISOString();
-                console.log('[NgAppVersion] ' + colors.green('Git Commit date: ') + colors.yellow(gitDateString));
-                src += 'export const gitCommitDate = \'' + gitDateString + '\';\n';
+            try {
+                const gitCommitInfo = require('git-commit-info');
+                const gitCommit = gitCommitInfo({
+                    cwd: gitFolder,
+                    commit: info.hash.substr(1),
+                });
+                if (gitCommit.hasOwnProperty('date')) {
+                    const gitDateString = new Date(gitCommit.date).toISOString();
+                    console.log('[NgAppVersion] ' + colors.green('Git Commit date: ') + colors.yellow(gitDateString));
+                    src += 'export const gitCommitDate = \'' + gitDateString + '\';\n';
+                }
+            } catch (e) {
+                console.log(e);
             }
         }
+        console.log('[NgAppVersion] ' + colors.green('Long Git version: ') + colors.yellow(versionWithHash));
+        src += 'export const versionLong = \'' + versionWithHash + '\';\n';
         if (info.hasOwnProperty('tag')) {
             console.log('[NgAppVersion] ' + colors.green('Git tag: ') + colors.yellow(info.tag));
             src += 'export const gitTag = \'' + info.tag + '\';\n';
         }
-        console.log('[NgAppVersion] ' + colors.green('Long Git version: ') + colors.yellow(versionWithHash));
-        src += 'export const versionLong = \'' + versionWithHash + '\';\n';
     } catch(e) {
         if (new RegExp(/Not a git repository/).test(e.message)) {
             console.log('[NgAppVersion] ' + colors.red('Not a Git repository.'));
