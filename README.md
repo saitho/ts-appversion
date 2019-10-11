@@ -34,7 +34,7 @@ With that setup the file is updated when `npm start` and `npm run-script build` 
 | --root  | root directory where your package.json is located |  .  |
 | --file  | relative location of the output file (based on the root directory) |  ./src/_version.ts  |
 | --force-git  | force Git detection (deprecated, use --git instead to point to your .git directory)  |  false  |
-| --git  | relative location of the .git directory to use (based on the root directory) |  .  |
+| --git  | relative location of the folder containing the .git folder (based on the root directory) |  .  |
 
 ## Receiving the versions
 
@@ -45,11 +45,16 @@ You'll be able to import the values just like any other package:
 import { version } from '../_versions';
 ```
 
-The file will contain two version numbers:
+The file will contain the following variables:
 
 * **version** is the version from the packages.json (e.g. v1.0.0)
-* **versionLong** is the version from the packages.json PLUS the Hash of the current Git-Commit (e.g. v1.0.0-g63962e3) - will only be generated if your repository is a Git Repository
 * **versionDate** is the timestamp in ISO format when the compilation/package started.
+* **versionLong** is the version from the packages.json PLUS the Hash of the current Git-Commit (e.g. v1.0.0-g63962e3) - will only be generated if your repository is a Git Repository
+* **gitTag** is the latest Git tag
+* **gitCommitHash** is the hash of the last commit (Note: the Git commit will always prefix with a "g")
+* **gitCommitDate** is the timestamp in ISO format of the last commit
+
+_Note:_ The variables starting with "git" and the variable "versionLong" will only be available for Git repositories.
 
 ## Environment-related versions
 
