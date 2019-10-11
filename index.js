@@ -22,15 +22,15 @@ if (!fs.existsSync(packageFile)) {
     return;
 }
 
-const appVersion = require(packageFile).version;
-
 let versionFile = path.join(__dirname, rootPath, 'src', '_versions.ts');
 if (argv.hasOwnProperty('file')) {
     versionFile = path.join(__dirname, rootPath, argv.file);
 }
 
-console.log(colors.cyan('\nWriting version strings to ' + versionFile));
+// pull version from package.json
+const appVersion = require(packageFile).version;
 
+console.log('[NgAppVersion] ' + colors.green('Application version (from package.json): ') + colors.yellow(appVersion));
 let src = 'export const version = \'' + appVersion + '\';\n';
 
 let enableGit = false;
@@ -64,8 +64,19 @@ if (enableGit) {
         let versionWithHash = appVersion;
         if (info.hasOwnProperty('hash')) {
             versionWithHash = versionWithHash + '-' + info.hash;
+            src += 'export const gitCommitHash = \'' + info.hash + '\';\n';
+            console.log('[NgAppVersion] ' + colors.green('Git Commit hash: ') + colors.yellow(info.hash));
         }
-        src += 'export const versionLong = \'' + versionWithHash + '\';\n';
+        if (info.hasOwnProperty('tag')) {
+            console.log('[NgAppVersion] ' + colors.green('Git tag: ') + colors.yellow(info.tag));
+            src += 'export const gitTag = \'' + info.tag + '\';\n';
+        }
+        console.log('[NgAppVersion] ' + colors.green('Long Git version: ') + colors.yellow(versionWithHash));
+        src += 'export const gitVersionLong = \'' + versionWithHash + '\';\n';
+
+        console.log('[NgAppVersion] ' + colors.blue('Deprecation notice: ') + colors.grey('Using the variable "versionLong" is deprecated. Use "gitVersionLong" instead.'));
+        src += '// DEPRECATION: versionLong is deprecated - use gitVersionLong instead\n';
+        src += 'export const versionLong = gitVersionLong;\n';
     } catch(e) {
         if (new RegExp(/Not a git repository/).test(e.message)) {
             console.log('[NgAppVersion] ' + colors.red('Not a Git repository.'));
@@ -77,8 +88,6 @@ if (enableGit) {
 
 src += 'export const versionDate = \'' + new Date().toISOString() + '\';\n';
 
-// ensure version module pulls value from package.json
-console.log('[NgAppVersion] ' + colors.green('Updating application version ') + colors.yellow(appVersion));
 console.log('[NgAppVersion] ' + colors.green('Writing version module to ') + colors.yellow(versionFile));
 fs.writeFile(versionFile, src, function (err) {
     if (err) {
