@@ -51,7 +51,7 @@ The file will contain the following variables:
 * **versionDate** is the timestamp in ISO format when the compilation/package started.
 * **versionLong** is the version from the packages.json PLUS the Hash of the current Git-Commit (e.g. v1.0.0-g63962e3) - will only be generated if your repository is a Git Repository
 * **gitTag** is the latest Git tag
-* **gitCommitHash** is the hash of the last commit (Note: the Git commit will always prefix with a "g")
+* **gitCommitHash** is the short hash of the last commit
 * **gitCommitDate** is the timestamp in ISO format of the last commit
 
 _Note:_ The variables starting with "git" and the variable "versionLong" will only be available for Git repositories.

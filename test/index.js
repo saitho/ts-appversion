@@ -10,25 +10,20 @@ const { exec } = require('child_process');
 const _ = require('lodash');
 const path = require('path');
 const fs = require('fs');
-const should = require('chai').should();
+const os = require('os');
 const expect = require('chai').expect;
-const assert = require('chai').assert;
 const TestRepo = require('./lib/test-repo');
 
-const repoDir = path.join(__dirname, 'test-repo');
+const repoDir = path.join(os.tmpdir(), 'test-repo');
 const repo = new TestRepo(repoDir);
 
 before(function() {
     repo.clean();
 });
 
-after(function() {
-    //repo.clean();
-});
-
 describe('appversion', function() {
     it('should skip when no package.json is found.', function(done) {
-        exec('node index.js --root=./test/test-repo --file=version-test.ts', (err, stdout, stderr) => {
+        exec('node index.js --root=' + repoDir + ' --file=version-test.ts', (err, stdout, stderr) => {
             if (err) {
                 done('Test failed: Could not execute command.');
                 return;
@@ -60,7 +55,7 @@ describe('appversion', function() {
     it('should succeed with default settings and without a Git repository', function(done) {
         fs.mkdirSync(path.join(repoDir, 'src'), {recursive: true});
         fs.writeFileSync(path.join(repoDir, 'package.json'), '{"version": "1.0.0"}');
-        exec('node index.js --root=./test/test-repo', (err, stdout, stderr) => {
+        exec('node index.js --root=' + repoDir, (err, stdout, stderr) => {
             if (err) {
                 done('Test failed: Could not execute command.');
                 return;
@@ -69,7 +64,7 @@ describe('appversion', function() {
                 done(stderr);
                 return;
             }
-            expect(stdout).to.match(/Writing version strings to/);
+            expect(stdout).to.match(/Writing version module to/);
             const outputFile = path.join(repoDir, 'src', '_versions.ts');
             if (!fs.existsSync(outputFile)) {
                 done('File ' + outputFile + ' not found.');
@@ -77,7 +72,7 @@ describe('appversion', function() {
             }
             const fileContents = fs.readFileSync(outputFile, 'utf8');
             expect(fileContents).to.contains('const version = \'1.0.0\'');
-            expect(fileContents).not.to.contains('const versionLong = \'1.0.0-g');
+            expect(fileContents).not.to.contains('const versionLong = \'1.0.0-');
             done();
         });
     });
@@ -86,7 +81,7 @@ describe('appversion', function() {
         repo.init();
         fs.mkdirSync(path.join(repoDir, 'src'));
         fs.writeFileSync(path.join(repoDir, 'package.json'), '{"version": "1.0.0"}');
-        exec('node index.js --root=./test/test-repo', (err, stdout, stderr) => {
+        exec('node index.js --root=' + repoDir, (err, stdout, stderr) => {
             if (err) {
                 done('Test failed: Could not execute command.');
                 return;
@@ -95,7 +90,7 @@ describe('appversion', function() {
                 done(stderr);
                 return;
             }
-            expect(stdout).to.match(/Writing version strings to/);
+            expect(stdout).to.match(/Writing version module to/);
             const outputFile = path.join(repoDir, 'src', '_versions.ts');
             if (!fs.existsSync(outputFile)) {
                 done('File ' + outputFile + ' not found.');
@@ -103,7 +98,8 @@ describe('appversion', function() {
             }
             const fileContents = fs.readFileSync(outputFile, 'utf8');
             expect(fileContents).to.contains('const version = \'1.0.0\'');
-            expect(fileContents).to.contains('const versionLong = \'1.0.0-g');
+            expect(fileContents).to.contains('const versionLong = \'1.0.0-');
+            expect(fileContents).to.not.contains('const versionLong = \'1.0.0-\'');
             done();
         });
     });
@@ -112,7 +108,7 @@ describe('appversion', function() {
     it('should succeed with different file output', function(done) {
         repo.init();
         fs.writeFileSync(path.join(repoDir, 'package.json'), '{"version": "1.0.0"}');
-        exec('node index.js --root=./test/test-repo --file=version-test.ts', (err, stdout, stderr) => {
+        exec('node index.js --root=' + repoDir + ' --file=version-test.ts', (err, stdout, stderr) => {
             if (err) {
                 done('Test failed: Could not execute command.');
                 return;
@@ -121,7 +117,7 @@ describe('appversion', function() {
                 done(stderr);
                 return;
             }
-            expect(stdout).to.match(/Writing version strings to/);
+            expect(stdout).to.match(/Writing version module to/);
             const outputFile = path.join(repoDir, 'version-test.ts');
             if (!fs.existsSync(outputFile)) {
                 done('File ' + outputFile + ' not found.');
@@ -129,17 +125,19 @@ describe('appversion', function() {
             }
             const fileContents = fs.readFileSync(outputFile, 'utf8');
             expect(fileContents).to.contains('const version = \'1.0.0\'');
-            expect(fileContents).to.contains('const versionLong = \'1.0.0-g');
+            expect(fileContents).to.contains('const versionLong = \'1.0.0-');
+            expect(fileContents).to.not.contains('const versionLong = \'1.0.0-\'');
             done();
         });
     });
 
     it('should succeed when .git directory is not in root', function(done) {
         repo.init();
-        fs.mkdirSync(path.join(repoDir, 'application'));
-        fs.mkdirSync(path.join(repoDir, 'application', 'src'));
-        fs.writeFileSync(path.join(repoDir, 'application', 'package.json'), '{"version": "1.0.0"}');
-        exec('node index.js --root=./test/test-repo/application --git=..', (err, stdout, stderr) => {
+        const applicationDir = path.join(repoDir, 'application');
+        fs.mkdirSync(applicationDir);
+        fs.mkdirSync(path.join(applicationDir, 'src'));
+        fs.writeFileSync(path.join(applicationDir, 'package.json'), '{"version": "1.0.0"}');
+        exec('node index.js --root=' + applicationDir + ' --git=..', (err, stdout, stderr) => {
             if (err) {
                 done('Test failed: Could not execute command.');
                 return;
@@ -148,16 +146,16 @@ describe('appversion', function() {
                 done(stderr);
                 return;
             }
-            const outputFile = path.join(repoDir, 'application', 'src', '_versions.ts');
+            const outputFile = path.join(applicationDir, 'src', '_versions.ts');
             if (!fs.existsSync(outputFile)) {
                 done('File ' + outputFile + ' not found.');
                 return;
             }
             const fileContents = fs.readFileSync(outputFile, 'utf8');
             expect(fileContents).to.contains('const version = \'1.0.0\'');
-            expect(fileContents).to.contains('const versionLong = \'1.0.0-g');
+            expect(fileContents).to.contains('const versionLong = \'1.0.0-');
+            expect(fileContents).to.not.contains('const versionLong = \'1.0.0-\'');
             done();
         });
     });
 });
-

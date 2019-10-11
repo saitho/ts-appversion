@@ -9,6 +9,7 @@ var _ = require('lodash');
 var execFileSync = require('child_process').execFileSync;
 var path = require('path');
 var fs = require('fs');
+var os = require('os');
 var rimraf = require('rimraf');
 require('chai').should();
 
@@ -26,9 +27,8 @@ TestRepo.prototype._execGit = function() {
 };
 
 TestRepo.prototype.clean = function() {
-    // Safety check to avoid nuking directory trees out of the project path
-    var projectPath = path.normalize(path.join(__dirname, '..', '..'));
-    this._dir.should.satisfy(_.partial(_.startsWith, _, projectPath));
+    // Safety check to avoid nuking directory trees out of the tmp directory path
+    this._dir.should.satisfy(_.partial(_.startsWith, _, os.tmpdir()));
 
     rimraf.sync(path.join(this._dir, '.git'));
     rimraf.sync(path.join(this._dir, '*'));
@@ -40,6 +40,8 @@ TestRepo.prototype.init = function() {
     this._execGit('config', 'core.autocrlf', 'false');
     this._execGit('config', 'user.name', 'Mocha');
     this._execGit('config', 'user.email', 'test@example.org');
+    this.changeData();
+    this.commit();
 };
 
 TestRepo.prototype.changeData = function() {
