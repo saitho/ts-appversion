@@ -1,6 +1,7 @@
 # NgAppVersion
 
 [![Build Status](https://travis-ci.com/saitho/ng-appversion.svg?branch=master)](https://travis-ci.com/saitho/ng-appversion)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=saitho_ng-appversion&metric=alert_status)](https://sonarcloud.io/dashboard?id=saitho_ng-appversion)
 [![npm version](https://img.shields.io/npm/v/ng-appversion.svg)](https://www.npmjs.com/package/ng-appversion)
 [![npm license](https://img.shields.io/npm/l/ng-appversion.svg)](https://www.npmjs.com/package/ng-appversion)
 [![Known Vulnerabilities](https://snyk.io/test/github/saitho/ng-appversion/badge.svg?targetFile=package.json)](https://snyk.io/test/github/saitho/ng-appversion?targetFile=package.json)
