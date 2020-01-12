@@ -30,6 +30,7 @@
     "chai": "^4.2.0",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
+    "lodash": "^4.17.15",
     "mocha": "^6.2.0",
     "rimraf": "^3.0.0",
     "semantic-release": "^16.0.1",
