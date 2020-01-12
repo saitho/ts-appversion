@@ -7,7 +7,6 @@ const { exec } = require('child_process');
  * The test-repo directory must be writable.
  */
 
-const _ = require('lodash');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
