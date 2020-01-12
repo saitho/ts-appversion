@@ -1,6 +1,25 @@
 language: node_js
-node_js:
-  - "stable"
+os: linux
+dist: trusty
+
 cache:
   directories:
-    - "node_modules"
+    - node_modules
+
+install:
+  - npm i pnpm -g
+  - pnpm install
+
+jobs:
+  include:
+    - stage: test code
+      script:
+        - pnpm test
+    - stage: release
+      if: branch = master
+      node_js: lts/*
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - pnpx semantic-release
