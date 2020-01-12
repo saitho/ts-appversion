@@ -1,7 +1,7 @@
 {
-  "name": "ng-appversion",
+  "name": "@saithodev/ts-appversion",
   "version": "1.3.0",
-  "description": "Reads the version from your packages.json and saves it in a .ts file you can include within your Angular application.",
+  "description": "Reads the version from your packages.json and saves it in a .ts file you can include into your application.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -13,6 +13,7 @@
   },
   "keywords": [
     "angular",
+    "typescript",
     "version"
   ],
   "author": "Mario Lubenka",

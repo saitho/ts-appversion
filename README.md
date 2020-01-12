@@ -1,35 +1,38 @@
-# NgAppVersion
+# TS-AppVersion
 
 [![Build Status](https://travis-ci.com/saitho/ng-appversion.svg?branch=master)](https://travis-ci.com/saitho/ng-appversion)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=saitho_ng-appversion&metric=alert_status)](https://sonarcloud.io/dashboard?id=saitho_ng-appversion)
-[![npm version](https://img.shields.io/npm/v/ng-appversion.svg)](https://www.npmjs.com/package/ng-appversion)
-[![npm license](https://img.shields.io/npm/l/ng-appversion.svg)](https://www.npmjs.com/package/ng-appversion)
+[![npm version](https://img.shields.io/npm/v/@saithodev/ts-appversion.svg)](https://www.npmjs.com/package/@saithodev/ts-appversion)
+[![npm license](https://img.shields.io/npm/l/@saithodev/ts-appversion.svg)](https://www.npmjs.com/package/@saithodev/ts-appversion)
 [![Known Vulnerabilities](https://snyk.io/test/github/saitho/ng-appversion/badge.svg?targetFile=package.json)](https://snyk.io/test/github/saitho/ng-appversion?targetFile=package.json)
 [![Dependency Status](https://david-dm.org/saitho/ng-appversion/status.svg)](https://david-dm.org/saitho/ng-appversion)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 This package extracts version information from your package.json and Git (if configured) and saves it into a TypeScript file.
-You can then access that TypeScript file from your Angular application and display the version in your Angular app.
+You can then access that TypeScript file from your application and display the version in your app.
+
+**The examples below illustrate the usage of this package for the Angular framework.
+However it should work similarly for any other JavaScript framework that is using TypeScript.**
 
 ## Getting started
 
-The package comes with a script that has to be run before the building.
+The package comes with a script that has to be run before your application is built.
 You might want to use *prestart* and *prebuild* inside your package.json for that:
 
 ```
 {
   scripts: [
-    "prestart": "node ./node_modules/ng-appversion/index.js",
+    "prestart": "node ./node_modules/@saithodev/ts-appversion/index.js",
     "start": "ng serve",
-    "prebuild": "node ./node_modules/ng-appversion/index.js",
+    "prebuild": "node ./node_modules/@saithodev/ts-appversion/index.js",
     "build": "ng build",
   ]
 }
 ```
 
-With that setup the file is updated when `npm start` and `npm run-script build` are run.
-*Note:* You won't be able to run `ng build` anymore as the script will not be executed. Use `npm run-script build` instead.
+With that setup the file is updated when `npm start` and `npm build` are run.
+*Note:* You won't be able to run `ng build` anymore as the script will not be executed. Use `npm build` instead.
 
 ## Command arguments
 
