@@ -43,6 +43,7 @@ With that setup the file is updated when `npm start` and `npm build` are run.
 | --file  | relative location of the output file (based on the root directory) |  ./src/_version.ts  |
 | --force-git  | force Git detection (deprecated, use --git instead to point to your .git directory)  |  false  |
 | --git  | relative location of the folder containing the .git folder (based on the root directory) |  .  |
+| --pnpm | PNPM has a different folder structure, resulting in a different root level. Add this if you use PNPM to install your dependencies. If package.json is not found at the expected PNPM path, it will fall back to the default one. This setting is ignored if `--root` is an absolute path. | false |
 
 ## Receiving the versions
 
