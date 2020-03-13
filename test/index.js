@@ -22,7 +22,7 @@ before(function() {
 
 describe('appversion', function() {
     it('should skip when no package.json is found.', function(done) {
-        exec('node index.js --root=' + repoDir + ' --file=version-test.ts', (err, stdout, stderr) => {
+        exec('node dist/index.js --root=' + repoDir + ' --file=version-test.ts', (err, stdout, stderr) => {
             if (err) {
                 done('Test failed: Could not execute command.');
                 return;
@@ -39,7 +39,7 @@ describe('appversion', function() {
     it('should succeed with default settings and without a Git repository', function(done) {
         fs.mkdirSync(path.join(repoDir, 'src'), {recursive: true});
         fs.writeFileSync(path.join(repoDir, 'package.json'), '{"version": "1.0.0"}');
-        exec('node index.js --root=' + repoDir, (err, stdout, stderr) => {
+        exec('node dist/index.js --root=' + repoDir, (err, stdout, stderr) => {
             if (err) {
                 done('Test failed: Could not execute command.');
                 return;
@@ -65,7 +65,7 @@ describe('appversion', function() {
         repo.init();
         fs.mkdirSync(path.join(repoDir, 'src'));
         fs.writeFileSync(path.join(repoDir, 'package.json'), '{"version": "1.0.0"}');
-        exec('node index.js --root=' + repoDir, (err, stdout, stderr) => {
+        exec('node dist/index.js --root=' + repoDir, (err, stdout, stderr) => {
             if (err) {
                 done('Test failed: Could not execute command.');
                 return;
@@ -92,7 +92,7 @@ describe('appversion', function() {
     it('should succeed with different file output', function(done) {
         repo.init();
         fs.writeFileSync(path.join(repoDir, 'package.json'), '{"version": "1.0.0"}');
-        exec('node index.js --root=' + repoDir + ' --file=version-test.ts', (err, stdout, stderr) => {
+        exec('node dist/index.js --root=' + repoDir + ' --file=version-test.ts', (err, stdout, stderr) => {
             if (err) {
                 done('Test failed: Could not execute command.');
                 return;
@@ -121,7 +121,7 @@ describe('appversion', function() {
         fs.mkdirSync(applicationDir);
         fs.mkdirSync(path.join(applicationDir, 'src'));
         fs.writeFileSync(path.join(applicationDir, 'package.json'), '{"version": "1.0.0"}');
-        exec('node index.js --root=' + applicationDir + ' --git=..', (err, stdout, stderr) => {
+        exec('node dist/index.js --root=' + applicationDir + ' --git=..', (err, stdout, stderr) => {
             if (err) {
                 done('Test failed: Could not execute command.');
                 return;
