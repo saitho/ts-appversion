@@ -50,11 +50,10 @@ With that setup the file is updated when `npm start` and `npm build` are run.
 The script generates a TypeScript file at the location `./src/_versions.ts` if you haven't provided a different location.
 You'll be able to import the values just like any other package:
 ```
-
-import { version } from '../_versions';
+import versions from '../_versions';
 ```
 
-The file will contain the following variables:
+The file will export an object with following variables:
 
 * **version** is the version from the packages.json (e.g. v1.0.0)
 * **versionDate** is the timestamp in ISO format when the compilation/package started.
@@ -77,28 +76,28 @@ In the following example:
 
 *environments/environment.ts*
 ```typescript
-import { versionDate } from '../_versions';
+import versions from '../_versions';
 export const environment = {
   production: false,
-  version: versionDate,
+  version: versions.versionDate,
 };
 ```
 
 *environments/environment.staging.ts*
 ```typescript
-import { versionLong } from '../_versions';
+import versions from '../_versions';
 export const environment = {
   production: false,
-  version: versionLong,
+  version: versions.versionLong,
 };
 ```
 
 *environments/environment.prod.ts*
 ```typescript
-import { version } from '../_versions';
+import versions from '../_versions';
 export const environment = {
   production: true,
-  version: version,
+  version: versions.version,
 };
 ```
 
