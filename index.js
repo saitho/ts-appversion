@@ -9,19 +9,44 @@ let rootPath = path.join('..', '..', '..');
 if (argv.hasOwnProperty('root')) {
     rootPath = argv.root;
 }
-let projectFolder = path.join(__dirname, rootPath);
+
+const projectLocations = [];
+
+// If root path is absolute, ignore other paths
 if (path.isAbsolute(rootPath)) {
-    projectFolder = rootPath;
+    projectLocations.push(rootPath);
+} else {
+    let projectFolder = path.join(__dirname, rootPath);
+    projectLocations.push(projectFolder);
+
+    if (argv.hasOwnProperty('pnpm')) {
+        // PNPM has a different folder structure. We have jump up a few levels to find package.json
+        const pnpmProjectLocation = path.join(__dirname, '..', '..', '..', '..', '..', '..', rootPath);
+        projectLocations.unshift(pnpmProjectLocation);
+    }
 }
-const packageFile = path.join(projectFolder, 'package.json');
-let gitFolder = projectFolder;
+
+// Find package.json
+let packageFile = '';
+let projectFolder = '';
+for (const location of projectLocations) {
+    packageFile = path.join(location, 'package.json');
+    try {
+        if (fs.existsSync(packageFile)) {
+            projectFolder = location;
+            break;
+        }
+    } catch (e) {
+        // Ignore errors
+    }
+}
 
 // TODO: remove with v2
 if (argv.hasOwnProperty('force-git')) {
     console.log('[TsAppVersion] ' + colors.blue('Deprecation notice: ') + colors.red('The use of --force-git is will be removed with version 2. Use --git instead to point to the folder where the .git folder resides.'));
 }
 
-if (!fs.existsSync(packageFile)) {
+if (!projectFolder.length) {
     console.log('[TsAppVersion] ' + colors.yellow('Cannot find package.json in root path. Skipping...'));
     return;
 }
@@ -36,6 +61,7 @@ console.log('[TsAppVersion] ' + colors.green('Application version (from package.
 let src = 'export const version = \'' + appVersion + '\';\n';
 
 let enableGit = false;
+let gitFolder = projectFolder;
 if (argv.hasOwnProperty('git')) {
 
     const pathChunks = path.resolve(argv.git).split(path.sep);
