@@ -16,13 +16,13 @@ const projectLocations = [];
 if (path.isAbsolute(rootPath)) {
     projectLocations.push(rootPath);
 } else {
-    let projectFolder = path.join(__dirname, rootPath);
-    projectLocations.push(projectFolder);
+    projectLocations.push(path.join(__dirname, rootPath));
 
     if (argv.hasOwnProperty('pnpm')) {
         // PNPM has a different folder structure. We have jump up a few levels to find package.json
-        const pnpmProjectLocation = path.join(__dirname, '..', '..', '..', '..', '..', '..', rootPath);
-        projectLocations.unshift(pnpmProjectLocation);
+        projectLocations.unshift(
+          path.join(__dirname, '..', '..', '..', '..', '..', '..', rootPath)
+        );
     }
 }
 
