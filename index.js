@@ -70,16 +70,6 @@ const obj: TsAppVersion = {
 let enableGit = false;
 let gitFolder = projectFolder;
 if (argv.hasOwnProperty('git')) {
-
-    const pathChunks = path.resolve(argv.git).split(path.sep);
-    if (pathChunks.length) {
-        const lastChunk = pathChunks.pop();
-        if (lastChunk === '.git') {
-            console.log('[TsAppVersion] ' + colors.blue('Deprecation notice: ') + colors.red('--git is now supposed to point to the directory where the .git folder resides in, instead of the .git folder itself.'));
-            argv.git = pathChunks.join(path.sep);
-        }
-    }
-
     gitFolder = path.resolve(projectFolder, argv.git);
     if (path.isAbsolute(argv.git)) {
         gitFolder = argv.git;
