@@ -41,11 +41,6 @@ for (const location of projectLocations) {
     }
 }
 
-// TODO: remove with v2
-if (argv.hasOwnProperty('force-git')) {
-    console.log('[TsAppVersion] ' + colors.blue('Deprecation notice: ') + colors.red('The use of --force-git is will be removed with version 2. Use --git instead to point to the folder where the .git folder resides.'));
-}
-
 if (!projectFolder.length) {
     console.log('[TsAppVersion] ' + colors.yellow('Cannot find package.json in root path. Skipping...'));
     return;
@@ -90,12 +85,7 @@ if (argv.hasOwnProperty('git')) {
         gitFolder = argv.git;
     }
 }
-if (argv.hasOwnProperty('force-git')) {
-    // TODO: remove with v2
-    // this option is required e.g. when the repository in question is a sub repository
-    enableGit = true;
-    console.log('[TsAppVersion] Git repository forced. Getting current commit information.');
-} else if (fs.existsSync(path.join(gitFolder, '.git'))) {
+if (fs.existsSync(path.join(gitFolder, '.git'))) {
     enableGit = true;
     console.log('[TsAppVersion] Git repository detected. Getting current commit information.');
 }
