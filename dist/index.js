@@ -5,7 +5,7 @@ const path = require('path');
 const colors = require('colors/safe');
 const fs = require('fs');
 const argv = require('yargs').argv;
-let rootPath = path.join('..', '..', '..');
+let rootPath = path.join('..', '..', '..', '..');
 if (argv.hasOwnProperty('root')) {
     rootPath = argv.root;
 }
