@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "build-version-file": "node ./node_modules/ng-appversion/index.js",
-    "prestart": "npm run-script build-version-file",
+    "prestart": "ts-appversion --git=..",
     "start": "ng serve",
     "start:dev": "npm run-script prestart && ng serve -c development",
     "start:prod": "npm run-script prestart && ng serve -c production",
-    "prebuild": "npm run-script build-version-file",
+    "prebuild": "ts-appversion --git=..",
     "build": "ng build"
   },
   "private": true,
@@ -21,7 +20,7 @@
     "@angular/platform-browser": "~8.2.9",
     "@angular/platform-browser-dynamic": "~8.2.9",
     "@angular/router": "~8.2.9",
-    "ng-appversion": "^1.2.1",
+    "@saithodev/ts-appversion": "2.0.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

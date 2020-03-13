@@ -2,11 +2,11 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import {gitTag} from "../_versions";
+import version from "../_versions";
 
 export const environment = {
   production: false,
-  version: gitTag,
+  version: version.gitTag,
 };
 
 /*
