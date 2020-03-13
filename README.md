@@ -24,9 +24,9 @@ You might want to use *prestart* and *prebuild* inside your package.json for tha
 ```
 {
   scripts: [
-    "prestart": "node ./node_modules/@saithodev/ts-appversion/index.js",
+    "prestart": "ts-appversion",
     "start": "ng serve",
-    "prebuild": "node ./node_modules/@saithodev/ts-appversion/index.js",
+    "prebuild": "ts-appversion",
     "build": "ng build",
   ]
 }
