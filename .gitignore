@@ -2,3 +2,5 @@ _versions.ts
 node_modules
 .idea
 /ng-appversion.iml
+.nyc_output
+coverage
