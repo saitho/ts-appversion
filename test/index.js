@@ -36,21 +36,6 @@ describe('appversion', function() {
         });
     });
 
-    it('should throw deprecation message when using --force-git', function(done) {
-        exec('node index.js --force-git', (err, stdout, stderr) => {
-            if (err) {
-                done('Test failed: Could not execute command.');
-                return;
-            }
-            if (stderr) {
-                done(stderr);
-                return;
-            }
-            expect(stdout).to.contains('Deprecation notice');
-            done();
-        });
-    });
-
     it('should succeed with default settings and without a Git repository', function(done) {
         fs.mkdirSync(path.join(repoDir, 'src'), {recursive: true});
         fs.writeFileSync(path.join(repoDir, 'package.json'), '{"version": "1.0.0"}');
