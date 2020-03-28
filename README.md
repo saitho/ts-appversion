@@ -55,6 +55,8 @@ import { versions, TsAppVersion } from '../_versions';
 The file will export an object with following variables:
 
 * **version** is the version from the packages.json (e.g. v1.0.0)
+* **name** is the name from the packages.json (e.g. 'sample-app')
+* **description** is the description from the packages.json
 * **versionDate** is the timestamp in ISO format when the compilation/package started.
 * **versionLong** is the version from the packages.json PLUS the Hash of the current Git-Commit (e.g. v1.0.0-g63962e3) - will only be generated if your repository is a Git Repository
 * **gitTag** is the latest Git tag

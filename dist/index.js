@@ -50,10 +50,18 @@ const outputFile = argv.hasOwnProperty('file') ? argv.file : path.join('src', '_
 const versionFile = path.join(projectFolder, outputFile);
 
 // pull version from package.json
-const appVersion = require(packageFile).version;
+const pkg = require(packageFile); 
+const appVersion = pkg.version;
+const appName = pkg.name;
+const appDescription = pkg.description;
 
 console.log('[TsAppVersion] ' + colors.green('Application version (from package.json): ') + colors.yellow(appVersion));
+console.log('[TsAppVersion] ' + colors.green('Application description (from package.json): ') + colors.yellow(appName));
+
+let src = `export interface TsAppVersion {
     version: string;
+    name: string;
+    description?: string;
     versionLong?: string;
     versionDate: string;
     gitCommitHash?: string;
@@ -62,8 +70,13 @@ console.log('[TsAppVersion] ' + colors.green('Application version (from package.
 }
 export const versions: TsAppVersion = {
     version: '${appVersion}',
-    versionDate: '${new Date().toISOString()}'
+    name: '${appName}',    
+    versionDate: '${new Date().toISOString()}',
 `;
+if (appDescription !== undefined && appDescription !== '') {
+    console.log('[TsAppVersion] ' + colors.green('Application description (from package.json): ') + colors.yellow(appDescription));
+    src += `    description: '${appDescription}',\n`;
+}
 
 let enableGit = false;
 let gitFolder = projectFolder;
