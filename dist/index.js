@@ -70,7 +70,7 @@ let src = `export interface TsAppVersion {
 }
 export const versions: TsAppVersion = {
     version: '${appVersion}',
-    name: '${appName}',    
+    name: '${appName}',
     versionDate: '${new Date().toISOString()}',
 `;
 if (appDescription !== undefined && appDescription !== '') {
