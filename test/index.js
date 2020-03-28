@@ -55,8 +55,8 @@ describe('appversion', function() {
                 return;
             }
             const fileContents = fs.readFileSync(outputFile, 'utf8');
-            expect(fileContents).to.contains('version: \'1.0.0\'');
-            expect(fileContents).not.to.contains('obj.versionLong = \'1.0.0-');
+            expect(fileContents).to.contains('version: \'1.0.0\',');
+            expect(fileContents).not.to.contains('versionLong = \'1.0.0-');
             done();
         });
     });
@@ -81,9 +81,10 @@ describe('appversion', function() {
                 return;
             }
             const fileContents = fs.readFileSync(outputFile, 'utf8');
-            expect(fileContents).to.contains('version: \'1.0.0\'');
-            expect(fileContents).to.contains('obj.versionLong = \'1.0.0-');
-            expect(fileContents).to.not.contains('obj.versionLong = \'1.0.0-\'');
+            expect(fileContents).to.contains('export const versions: TsAppVersion =');
+            expect(fileContents).to.contains('version: \'1.0.0\',');
+            expect(fileContents).to.contains('versionLong: \'1.0.0-');
+            expect(fileContents).to.not.contains('versionLong: \'1.0.0-\'');
             done();
         });
     });
@@ -108,9 +109,10 @@ describe('appversion', function() {
                 return;
             }
             const fileContents = fs.readFileSync(outputFile, 'utf8');
-            expect(fileContents).to.contains('version: \'1.0.0\'');
-            expect(fileContents).to.contains('obj.versionLong = \'1.0.0-');
-            expect(fileContents).to.not.contains('obj.versionLong = \'1.0.0-\'');
+            expect(fileContents).to.contains('export const versions: TsAppVersion =');
+            expect(fileContents).to.contains('version: \'1.0.0\',');
+            expect(fileContents).to.contains('versionLong: \'1.0.0-');
+            expect(fileContents).to.not.contains('versionLong: \'1.0.0-\'');
             done();
         });
     });
@@ -136,9 +138,10 @@ describe('appversion', function() {
                 return;
             }
             const fileContents = fs.readFileSync(outputFile, 'utf8');
+            expect(fileContents).to.contains('export const versions: TsAppVersion =');
             expect(fileContents).to.contains('version: \'1.0.0\'');
-            expect(fileContents).to.contains('obj.versionLong = \'1.0.0-');
-            expect(fileContents).to.not.contains('obj.versionLong = \'1.0.0-\'');
+            expect(fileContents).to.contains('versionLong: \'1.0.0-');
+            expect(fileContents).to.not.contains('versionLong: \'1.0.0-\'');
             done();
         });
     });
