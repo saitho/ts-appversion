@@ -53,7 +53,6 @@ const versionFile = path.join(projectFolder, outputFile);
 const appVersion = require(packageFile).version;
 
 console.log('[TsAppVersion] ' + colors.green('Application version (from package.json): ') + colors.yellow(appVersion));
-let src = `interface TsAppVersion {
     version: string;
     versionLong?: string;
     versionDate: string;
@@ -61,10 +60,9 @@ let src = `interface TsAppVersion {
     gitCommitDate?: string;
     gitTag?: string;
 }
-const obj: TsAppVersion = {
+export const versions: TsAppVersion = {
     version: '${appVersion}',
     versionDate: '${new Date().toISOString()}'
-};
 `;
 
 let enableGit = false;
@@ -87,7 +85,7 @@ if (enableGit) {
         let versionWithHash = appVersion;
         if (info.hasOwnProperty('hash')) {
             versionWithHash = versionWithHash + '-' + info.hash;
-            src += `obj.gitCommitHash = '${info.hash}';\n`;
+            src += `    gitCommitHash: '${info.hash}',\n`;
             console.log('[TsAppVersion] ' + colors.green('Git Commit hash: ') + colors.yellow(info.hash));
 
             // Get date of commit
@@ -100,17 +98,17 @@ if (enableGit) {
                 if (gitCommit.hasOwnProperty('date')) {
                     const gitDateString = new Date(gitCommit.date).toISOString();
                     console.log('[TsAppVersion] ' + colors.green('Git Commit date: ') + colors.yellow(gitDateString));
-                    src += `obj.gitCommitDate = '${gitDateString}';\n`;
+                    src += `    gitCommitDate: '${gitDateString}',\n`;
                 }
             } catch (e) {
                 console.log(e);
             }
         }
         console.log('[TsAppVersion] ' + colors.green('Long Git version: ') + colors.yellow(versionWithHash));
-        src += `obj.versionLong = '${versionWithHash}';\n`;
+        src += `    versionLong: '${versionWithHash}',\n`;
         if (info.hasOwnProperty('tag')) {
             console.log('[TsAppVersion] ' + colors.green('Git tag: ') + colors.yellow(info.tag));
-            src += `obj.gitTag = '${info.tag}';\n`;
+            src += `    gitTag: '${info.tag}',\n`;
         }
     } catch(e) {
         if (new RegExp(/Not a git repository/).test(e.message)) {
@@ -121,7 +119,7 @@ if (enableGit) {
     }
 }
 
-src += `export default obj;
+src += `};
 `;
 
 console.log('[TsAppVersion] ' + colors.green('Writing version module to ') + colors.yellow(versionFile));

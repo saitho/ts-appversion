@@ -49,7 +49,7 @@ With that setup the file is updated when `npm start` and `npm build` are run.
 The script generates a TypeScript file at the location `./src/_versions.ts` if you haven't provided a different location.
 You'll be able to import the values just like any other package:
 ```
-import versions from '../_versions';
+import { versions, TsAppVersion } from '../_versions';
 ```
 
 The file will export an object with following variables:
