@@ -84,7 +84,7 @@ svg.material-icons:not(:last-child) {
   width: 200px;
   margin: 0 8px 16px;
   padding: 16px;
-  display: flex;
+  display: block;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -97,7 +97,7 @@ svg.material-icons:not(:last-child) {
 }
 
 .card.card-small {
-  height: 16px;
+  height: 180px;
   width: 168px;
 }
 
@@ -122,10 +122,7 @@ svg.material-icons:not(:last-child) {
   width: auto;
   min-width: 30%;
   position: relative;
-}
-
-.card.card.highlight-card span {
-  margin-left: 60px;
+  padding: 16px 16px 16px 75px;
 }
 
 svg#rocket {

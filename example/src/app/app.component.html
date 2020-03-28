@@ -44,7 +44,14 @@
       </g>
     </svg>
 
-    <span>This app is running with version {{ version }}</span>
+    <span>This app is running with version {{ version }} (from environment) / <strong>{{ tsAppVersion.version }}</strong> (from tsAppVersion direclty) and has following information:</span>
+    <ul>
+      <li>name: <strong>{{ tsAppVersion.name }}</strong> </li>
+      <li>versionDate: <strong>{{ tsAppVersion.versionDate }}</strong> </li>
+      <li>gitCommitHash: <strong>{{ tsAppVersion.gitCommitHash }}</strong> </li>
+      <li>versionLong: <strong>{{ tsAppVersion.versionLong }}</strong> </li>
+      <li>gitTag: <strong>{{ tsAppVersion.gitTag }}</strong> </li>
+    </ul>
 
     <svg id="rocket-smoke" alt="Rocket Ship Smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632" viewBox="0 0 516.119 1083.632">
       <path id="Path_40" data-name="Path 40" d="M644.6,141S143.02,215.537,147.049,870.207s342.774,201.755,342.774,201.755S404.659,847.213,388.815,762.2c-27.116-145.51-11.551-384.124,271.9-609.1C671.15,139.365,644.6,141,644.6,141Z" transform="translate(-147.025 -140.939)" fill="#f5f5f5"/>
@@ -61,7 +68,9 @@
     <ul>
       <li><strong>no context:</strong> The displayed version should be the <i>latest Git tag</i> from @saithodev/ts-appversion project (e.g. v1.3.0)</li>
       <li><strong>production:</strong> The displayed version should be <i>1.0.0</i> (from package.json)</li>
+      <li><strong>production:</strong> The displayed name should be <i>sample-app</i> (from package.json)</li>
       <li><strong>development:</strong> The displayed version should be <i>1.0.0</i> (from package.json) with the latest <i>hash</i> of the@saithodev/ts-appversion project (e.g. 1.0.0-gda1e67f)</li>
+      <li><strong>development:</strong> The displayed name should be <i>sample-app</i> (from package.json)</li>
     </ul>
   </div>
 
