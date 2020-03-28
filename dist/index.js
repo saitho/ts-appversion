@@ -54,12 +54,12 @@ const appVersion = require(packageFile).version;
 
 console.log('[TsAppVersion] ' + colors.green('Application version (from package.json): ') + colors.yellow(appVersion));
 let src = `interface TsAppVersion {
-    version: string,
-    versionLong?: string,
-    versionDate: string,
-    gitCommitHash?: string,
-    gitCommitDate?: string,
-    gitTag?: string,
+    version: string;
+    versionLong?: string;
+    versionDate: string;
+    gitCommitHash?: string;
+    gitCommitDate?: string;
+    gitTag?: string;
 }
 const obj: TsAppVersion = {
     version: '${appVersion}',
@@ -121,7 +121,8 @@ if (enableGit) {
     }
 }
 
-src += `export default obj;`;
+src += `export default obj;
+`;
 
 console.log('[TsAppVersion] ' + colors.green('Writing version module to ') + colors.yellow(versionFile));
 fs.writeFile(versionFile, src, function (err) {
