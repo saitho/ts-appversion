@@ -56,7 +56,7 @@ const appName = pkg.name;
 const appDescription = pkg.description;
 
 console.log('[TsAppVersion] ' + colors.green('Application version (from package.json): ') + colors.yellow(appVersion));
-console.log('[TsAppVersion] ' + colors.green('Application description (from package.json): ') + colors.yellow(appName));
+console.log('[TsAppVersion] ' + colors.green('Application name (from package.json): ') + colors.yellow(appName));
 
 let src = `export interface TsAppVersion {
     version: string;
