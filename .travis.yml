@@ -18,7 +18,7 @@ jobs:
           organization: saitho
       script:
         - pnpm test
-        - sonar-scanner
+        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then sonar-scanner; fi' # sonar only on non-PRs
     - stage: release
       if: branch = master
       node_js: lts/*
