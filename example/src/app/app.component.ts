@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from "../environments/environment";
 
-import { TsAppVersion } from 'src/_versions';
-import versions from 'src/_versions';
+import { TsAppVersion, versions } from 'src/_versions';
 
 @Component({
   selector: 'app-root',

@@ -51,10 +51,9 @@ You'll be able to import the values just like any other package, if you want use
 ```
 import versions from '../_versions';
 ```
-or you can import also TsAppVersion and use direclty in your template, like in app.component.ts example file
+or you can import also TsAppVersion and use directly in your template, like in app.component.ts example file
 ```
-import { TsAppVersion } from 'src/_versions.ts';
-import versions from 'src/_versions.ts';
+import { TsAppVersion, versions } from 'src/_versions.ts';
 
 @Component({
   selector: 'app-root',
