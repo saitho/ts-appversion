@@ -66,13 +66,13 @@ describe('appversion', function() {
             expect(fileContents).to.contains('gitCommitHash?: string;');
             expect(fileContents).to.contains('gitCommitDate?: string;');
             expect(fileContents).to.contains('gitTag?: string;');
-            expect(fileContents).to.contains('};\nconst obj: TsAppVersion = {');        // interface end + obj start
+            expect(fileContents).to.contains('};\nexport const versions: TsAppVersion = {');        // interface end + obj start
 
             // data test
             expect(fileContents).to.contains('version: \'1.0.0\',');
             expect(fileContents).to.contains('name: \'test\',');
             expect(fileContents).to.contains('description: \'test description\',');
-            expect(fileContents).to.contains('};\nexport default obj;\n');              // export default obj + file close
+            expect(fileContents).to.contains('};\nexport default versions;\n');              // export default obj + file close
             expect(fileContents).not.to.contains('versionLong = \'1.0.0-');
 
             done();
@@ -109,14 +109,14 @@ describe('appversion', function() {
             expect(fileContents).to.contains('gitCommitHash?: string;');
             expect(fileContents).to.contains('gitCommitDate?: string;');
             expect(fileContents).to.contains('gitTag?: string;');
-            expect(fileContents).to.contains('};\nconst obj: TsAppVersion = {');        // interface end + obj start
+            expect(fileContents).to.contains('};\nexport const versions: TsAppVersion = {');        // interface end + obj start
 
             // data test
             expect(fileContents).to.contains('version: \'1.0.0\',');
             expect(fileContents).to.contains('name: \'test\',');
             expect(fileContents).to.contains('description: \'test description\',');
             expect(fileContents).to.contains('versionLong: \'1.0.0-');
-            expect(fileContents).to.contains('};\nexport default obj;\n');              // export default obj + file close
+            expect(fileContents).to.contains('};\nexport default versions;\n');              // export default obj + file close
             expect(fileContents).to.not.contains('versionLong: \'1.0.0-\'');
 
             done();
@@ -153,14 +153,14 @@ describe('appversion', function() {
             expect(fileContents).to.contains('gitCommitHash?: string;');
             expect(fileContents).to.contains('gitCommitDate?: string;');
             expect(fileContents).to.contains('gitTag?: string;');
-            expect(fileContents).to.contains('};\nconst obj: TsAppVersion = {');        // interface end + obj start
+            expect(fileContents).to.contains('};\nexport const versions: TsAppVersion = {');        // interface end + obj start
 
             // data test
             expect(fileContents).to.contains('version: \'1.0.0\',');
             expect(fileContents).to.contains('name: \'test\',');
             expect(fileContents).to.contains('versionLong: \'1.0.0-');
             expect(fileContents).to.not.contains('versionLong: \'1.0.0-\'');
-            expect(fileContents).to.contains('};\nexport default obj;\n');              // export default obj + file close
+            expect(fileContents).to.contains('};\nexport default versions;\n');              // export default obj + file close
             expect(fileContents).to.not.contains('description: \'');
 
             done();
@@ -196,14 +196,14 @@ describe('appversion', function() {
             expect(fileContents).to.contains('gitCommitHash?: string;');
             expect(fileContents).to.contains('gitCommitDate?: string;');
             expect(fileContents).to.contains('gitTag?: string;');
-            expect(fileContents).to.contains('};\nconst obj: TsAppVersion = {');        // interface end + obj start
+            expect(fileContents).to.contains('};\nexport const versions: TsAppVersion = {');        // interface end + obj start
 
             // data test
             expect(fileContents).to.contains('version: \'1.0.0\',');
             expect(fileContents).to.contains('name: \'test\',');
             expect(fileContents).to.contains('description: \'test description\',');
             expect(fileContents).to.contains('versionLong: \'1.0.0-');
-            expect(fileContents).to.contains('};\nexport default obj;\n');              // export default obj + file close
+            expect(fileContents).to.contains('};\nexport default versions;\n');              // export default obj + file close
             expect(fileContents).to.not.contains('versionLong: \'1.0.0-\'');
 
             done();
@@ -241,14 +241,14 @@ describe('appversion', function() {
             expect(fileContents).to.contains('gitCommitHash?: string;');
             expect(fileContents).to.contains('gitCommitDate?: string;');
             expect(fileContents).to.contains('gitTag?: string;');
-            expect(fileContents).to.contains('};\nconst obj: TsAppVersion = {');        // interface end + obj start
+            expect(fileContents).to.contains('};\nexport const versions: TsAppVersion = {');        // interface end + obj start
 
             // data test
             expect(fileContents).to.contains('version: \'1.0.0\'');
             expect(fileContents).to.contains('name: \'test\'');
             expect(fileContents).to.contains('description: \'test description\'');
             expect(fileContents).to.contains('versionLong: \'1.0.0-');
-            expect(fileContents).to.contains('};\nexport default obj;\n');              // export default obj + file close
+            expect(fileContents).to.contains('};\nexport default versions;\n');              // export default obj + file close
 
             expect(fileContents).to.not.contains('versionLong: \'1.0.0-\'');
 
