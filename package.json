@@ -30,16 +30,16 @@
     "yargs": "^15.3.1"
   },
   "devDependencies": {
-    "@saithodev/semantic-release-sharedconf-npm": "^2.0.2",
+    "@saithodev/semantic-release-sharedconf-npm": "^2.1.0",
     "chai": "^4.2.0",
     "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mocha": "^8.0.1",
     "nyc": "^15.1.0",
     "rimraf": "^3.0.2",
-    "semantic-release": "^17.0.8",
-    "snyk": "^1.339.2"
+    "semantic-release": "^17.1.1",
+    "snyk": "^1.369.1"
   },
   "config": {
     "commitizen": {
