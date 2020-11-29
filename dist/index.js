@@ -18,10 +18,10 @@ if (path.isAbsolute(rootPath)) {
 } else {
     projectLocations.push(path.join(__dirname, rootPath));
 
-    if (argv.hasOwnProperty('pnpm')) {
-        // PNPM has a different folder structure. We have jump up a few levels to find package.json
+    // if loaded from node_modules folder, step back a few levels
+    if (__dirname.match('/.*node_modules\/@saithodev\/ts-appversion.*/')) {
         projectLocations.unshift(
-          path.join(__dirname, '..', '..', '..', '..', '..', '..', rootPath)
+          path.join(__dirname, '..', '..', '..', '..', rootPath)
         );
     }
 }
