@@ -9,8 +9,6 @@
   "scripts": {
     "start": "node dist/index.js",
     "test": "nyc --reporter=text --reporter=lcov mocha",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect",
     "semantic-release": "semantic-release",
     "commit": "git-cz"
   },
@@ -38,13 +36,11 @@
     "mocha": "^8.0.1",
     "nyc": "^15.1.0",
     "rimraf": "^3.0.2",
-    "semantic-release": "^17.1.1",
-    "snyk": "^1.369.1"
+    "semantic-release": "^17.1.1"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "snyk": true
+  }
 }
