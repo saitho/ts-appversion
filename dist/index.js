@@ -125,7 +125,7 @@ if (enableGit) {
         }
         console.log('[TsAppVersion] ' + colors.green('Long Git version: ') + colors.yellow(versionWithHash));
         src += `    versionLong: '${versionWithHash}',\n`;
-        if (info.hasOwnProperty('tag')) {
+        if (info.hasOwnProperty('tag') && info.tag !== null) {
             console.log('[TsAppVersion] ' + colors.green('Git tag: ') + colors.yellow(info.tag));
             src += `    gitTag: '${info.tag}',\n`;
         }
