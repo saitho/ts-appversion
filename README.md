@@ -43,6 +43,7 @@ With that setup the file is updated when `npm start` and `npm build` are run.
 | --file  | relative location of the output file (based on the root directory) |  ./src/_version.ts  |  false  |
 | --git  | relative location of the folder containing the .git folder (based on the root directory) |  .  |
 | --pnpm | PNPM has a different folder structure, resulting in a different root level. Add this if you use PNPM to install your dependencies. If package.json is not found at the expected PNPM path, it will fall back to the default one. This setting is ignored if `--root` is an absolute path. | false |
+| --set-version | Set this to override the value of the version string fetched from package.json (set in `version` property) |  |
 
 ## Receiving the versions
 
@@ -68,11 +69,9 @@ export class AppComponent {
 }
 ```
 
-> backward compatibility with previous version is guarantee
-
 The file will export an object with following variables:
 
-* **version** is the version from the packages.json (e.g. v1.0.0)
+* **version** is the version from packages.json (or value of `set-version` option if set)
 * **name** is the name from the packages.json (e.g. 'sample-app')
 * **description** is the description from the packages.json
 * **versionDate** is the timestamp in ISO format when the compilation/package started.

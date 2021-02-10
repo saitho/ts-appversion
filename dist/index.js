@@ -50,13 +50,19 @@ const outputFile = argv.hasOwnProperty('file') ? argv.file : path.join('src', '_
 const versionFile = path.join(projectFolder, outputFile);
 
 // pull version from package.json
-const pkg = require(packageFile); 
-const appVersion = pkg.version;
-const appName = pkg.name;
-const appDescription = pkg.description;
+const pkg = require(packageFile);
+const appName = pkg.name || '';
+const appDescription = pkg.description || '';
+
+let appVersion = pkg.version || '';
 
 console.log('[TsAppVersion] ' + colors.green('Application version (from package.json): ') + colors.yellow(appVersion));
 console.log('[TsAppVersion] ' + colors.green('Application name (from package.json): ') + colors.yellow(appName));
+
+if (argv.hasOwnProperty('set-version')) {
+    appVersion = argv['set-version']
+    console.log('[TsAppVersion] Setting fixed version ' + appVersion + ' from command option.');
+}
 
 let src = `export interface TsAppVersion {
     version: string;
