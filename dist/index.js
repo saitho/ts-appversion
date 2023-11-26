@@ -19,7 +19,11 @@ if (path.isAbsolute(rootPath)) {
     projectLocations.push(path.join(__dirname, rootPath));
 
     // if loaded from node_modules folder, step back a few levels
-    if (__dirname.match('/.*node_modules\/@saithodev\/ts-appversion.*/')) {
+    if (__dirname.match(/.*node_modules\/.pnpm\/@saithodev\+ts-appversion.*/)) {
+        projectLocations.unshift(
+            path.join(__dirname, '..', '..', '..', rootPath)
+        );
+    } else if (__dirname.match('/.*node_modules\/@saithodev\/ts-appversion.*/')) {
         projectLocations.unshift(
           path.join(__dirname, '..', '..', '..', '..', rootPath)
         );
