@@ -10,7 +10,7 @@ dependencies:
     version: 1.4.0
   git-commit-info:
     specifier: ^2.0.0
-    version: 2.0.0
+    version: 2.0.2
   git-describe:
     specifier: ^4.0.4
     version: 4.0.4
@@ -174,6 +174,7 @@ packages:
   /@commitlint/execute-rule@8.3.4:
     resolution: {integrity: sha512-f4HigYjeIBn9f7OuNv5zh2y5vWaAhNFrfeul8CRJDy82l3Y+09lxOTGxfF3uMXKrZq4LmuK6qvvRCZ8mUrVvzQ==}
     engines: {node: '>=4'}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -195,6 +196,7 @@ packages:
   /@commitlint/resolve-extends@8.3.4:
     resolution: {integrity: sha512-M34RLaAW1eGWgtkVtotHfPaJa+cZIARe8twKItd7RhWs7n/1W2py9GTFIiIEq95LBN1uah5vm1WQHsfLqPZYHA==}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       '@types/node': 12.12.24
       import-fresh: 3.2.1
@@ -408,7 +410,7 @@ packages:
       '@semantic-release/error': 2.2.0
       aggregate-error: 3.0.1
       debug: 4.1.1
-      execa: 4.0.0
+      execa: 4.0.3
       lodash: 4.17.19
       parse-json: 5.0.0
       semantic-release: 17.1.1
@@ -426,7 +428,7 @@ packages:
       aggregate-error: 3.0.1
       debug: 4.1.1
       dir-glob: 3.0.1
-      execa: 4.0.0
+      execa: 4.0.3
       lodash: 4.17.19
       micromatch: 4.0.2
       p-reduce: 2.1.0
@@ -470,7 +472,7 @@ packages:
     dependencies:
       '@semantic-release/error': 2.2.0
       aggregate-error: 3.0.1
-      execa: 4.0.0
+      execa: 4.0.3
       fs-extra: 9.0.1
       lodash: 4.17.19
       nerf-dart: 1.0.0
@@ -535,6 +537,7 @@ packages:
 
   /@types/node@12.12.24:
     resolution: {integrity: sha512-1Ciqv9pqwVtW6FsIUKSZNB82E5Cu1I2bBTj1xuIHXLe/1zYLl3956Nbhg2MzSYHVfl9/rmanjbQIb7LibfCnug==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -762,6 +765,7 @@ packages:
 
   /babel-runtime@6.26.0:
     resolution: {integrity: sha1-llxwWGaOgrVde/4E/yM3vItWR/4=}
+    requiresBuild: true
     dependencies:
       core-js: 2.6.11
       regenerator-runtime: 0.11.1
@@ -871,6 +875,7 @@ packages:
   /caller-callsite@2.0.0:
     resolution: {integrity: sha1-hH4PzgoiN1CpoCfFSzNzGtMVQTQ=}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       callsites: 2.0.0
     dev: true
@@ -879,6 +884,7 @@ packages:
   /caller-path@2.0.0:
     resolution: {integrity: sha1-Ro+DBE42mrIBD6xfBs7uFbsssfQ=}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       caller-callsite: 2.0.0
     dev: true
@@ -887,6 +893,7 @@ packages:
   /callsites@2.0.0:
     resolution: {integrity: sha1-BuuE8A7qQT2oav/vrL/7Ngk7PFA=}
     engines: {node: '>=4'}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -1211,6 +1218,7 @@ packages:
   /cosmiconfig@5.2.1:
     resolution: {integrity: sha512-H65gsXo1SKjf8zmrJ67eJk8aIRKV5ff2D4uKZIBZShbhGSpEmsQOPW/SKMKYhSTrqR7ufy6RP69rPogdaPh/kA==}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       import-fresh: 2.0.0
       is-directory: 0.3.1
@@ -1231,7 +1239,7 @@ packages:
     dev: true
 
   /cross-spawn@5.1.0:
-    resolution: {integrity: sha1-6L0O/uWPz/b4+UUQoKVUu/ojVEk=}
+    resolution: {integrity: sha512-pTgQJ5KC0d2hcY8eyL1IzlBPYjTkyH72XRZPnLyKus2mBfNjQs3klqbJU2VILqZryAZUt9JOb3h/mWMy23/f5A==}
     dependencies:
       lru-cache: 4.1.5
       shebang-command: 1.2.0
@@ -1247,15 +1255,6 @@ packages:
       semver: 5.7.1
       shebang-command: 1.2.0
       which: 1.3.1
-    dev: true
-
-  /cross-spawn@7.0.1:
-    resolution: {integrity: sha512-u7v4o84SwFpD32Z8IIcPZ6z1/ie24O6RU3RbtL5Y316l3KuHVPx9ItBgWQ6VlfAFnRnTtMUrsQ9MUUTuEZjogg==}
-    engines: {node: '>= 8'}
-    dependencies:
-      path-key: 3.1.1
-      shebang-command: 2.0.0
-      which: 2.0.2
     dev: true
 
   /cross-spawn@7.0.3:
@@ -1472,7 +1471,7 @@ packages:
     resolution: {integrity: sha512-xXgohoOAFFF1Y3EdsSKP7olyH/DLS6ZD3aglV6mDFAXBqBXLJSsZLrOZdYfDs5mOmgNaP3YYynObzwF3QkC24g==}
     engines: {node: '>=10.13'}
     dependencies:
-      execa: 4.0.0
+      execa: 4.0.3
       java-properties: 1.0.2
     dev: true
 
@@ -1567,7 +1566,7 @@ packages:
     dev: true
 
   /execa@0.6.3:
-    resolution: {integrity: sha1-V7aaWU8IF1nGnlNw8NF7nLEWWP4=}
+    resolution: {integrity: sha512-/teX3MDLFBdYUhRk8WCBYboIMUmqeizu0m9Z3YF3JWrbEh/SlZg00vLJSaAGWw3wrZ9tE0buNw79eaAPYhUuvg==}
     engines: {node: '>=4'}
     dependencies:
       cross-spawn: 5.1.0
@@ -1575,7 +1574,7 @@ packages:
       is-stream: 1.1.0
       npm-run-path: 2.0.2
       p-finally: 1.0.0
-      signal-exit: 3.0.2
+      signal-exit: 3.0.3
       strip-eof: 1.0.0
     dev: false
 
@@ -1596,14 +1595,14 @@ packages:
     resolution: {integrity: sha512-JbDUxwV3BoT5ZVXQrSVbAiaXhXUkIwvbhPIwZ0N13kX+5yCzOhUNdocxB/UQRuYOHRYYwAxKYwJYc0T4D12pDA==}
     engines: {node: '>=10'}
     dependencies:
-      cross-spawn: 7.0.1
+      cross-spawn: 7.0.3
       get-stream: 5.1.0
       human-signals: 1.1.1
       is-stream: 2.0.0
       merge-stream: 2.0.0
       npm-run-path: 4.0.1
       onetime: 5.1.0
-      signal-exit: 3.0.2
+      signal-exit: 3.0.3
       strip-final-newline: 2.0.0
     dev: true
 
@@ -1618,7 +1617,7 @@ packages:
       merge-stream: 2.0.0
       npm-run-path: 4.0.1
       onetime: 5.1.0
-      signal-exit: 3.0.2
+      signal-exit: 3.0.3
       strip-final-newline: 2.0.0
 
   /expand-brackets@2.1.4:
@@ -1832,8 +1831,8 @@ packages:
     resolution: {integrity: sha512-dCIq9FpEcyQyXKCkyzmlPTFNgrCzPudOe+mhvJU5zAtlBnGVy2yKxtfsxK2tQBThwq225jcvBjpw1Gr40uzZCA==}
     engines: {node: '>=8.0.0'}
     dependencies:
-      cross-spawn: 7.0.1
-      signal-exit: 3.0.2
+      cross-spawn: 7.0.3
+      signal-exit: 3.0.3
     dev: true
 
   /form-data@2.5.1:
@@ -1923,7 +1922,7 @@ packages:
     dev: true
 
   /get-stream@3.0.0:
-    resolution: {integrity: sha1-jpQ9E1jcN1VQVOy+LtsFqhdO3hQ=}
+    resolution: {integrity: sha512-GlhdIUuVakc8SJ6kK0zAFbiGzRFzNnY4jUuEbV9UROo4Y+0Ny4fjvcZFVTeDA4odpFyOQzaw6hXukJSq/f28sQ==}
     engines: {node: '>=4'}
     dev: false
 
@@ -1959,8 +1958,8 @@ packages:
       globby: 6.1.0
     dev: true
 
-  /git-commit-info@2.0.0:
-    resolution: {integrity: sha512-0K/nyyCHdIB1oCEmvjlDTrXXSj/rZJeCyAzyGoj3WMrXNGH0vz/BjzuQ/jdcBZODnjP4KTDOpmtX1V1HtPo0Pw==}
+  /git-commit-info@2.0.2:
+    resolution: {integrity: sha512-QOgPqeTkFiIQr3TW/ekG2U6s1x7OkNdR+2XsapmXHiGImO5Qx2cilx2HmGPrihIqmV0WWCo5H+B938lQ/vAAfA==}
     dependencies:
       execa: 4.0.3
       is-git-repository: 1.1.1
@@ -2032,6 +2031,7 @@ packages:
   /global-dirs@0.1.1:
     resolution: {integrity: sha1-sxnA3UYH81PzvpzKTHL8FIxJ9EU=}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       ini: 1.3.5
     dev: true
@@ -2262,6 +2262,7 @@ packages:
   /import-fresh@2.0.0:
     resolution: {integrity: sha1-2BNVwVYS04bGH53dOSLUMEgipUY=}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       caller-path: 2.0.0
       resolve-from: 3.0.0
@@ -2429,6 +2430,7 @@ packages:
   /is-directory@0.3.1:
     resolution: {integrity: sha1-YTObbyR1/Hcv2cnYP1yFddwVSuE=}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -2459,7 +2461,7 @@ packages:
     engines: {node: '>=8'}
 
   /is-git-repository@1.1.1:
-    resolution: {integrity: sha1-xo5LeoBkIjSarsSIlzqQVY1+m+A=}
+    resolution: {integrity: sha512-hxLpJytJnIZ5Og5QsxSkzmb8Qx8rGau9bio1JN/QtXcGEFuSsQYau0IiqlsCwftsfVYjF1mOq6uLdmwNSspgpA==}
     dependencies:
       execa: 0.6.3
       path-is-absolute: 1.0.1
@@ -2541,7 +2543,7 @@ packages:
     dev: true
 
   /is-stream@1.1.0:
-    resolution: {integrity: sha1-EtSj3U5o4Lec6428hBc66A2RykQ=}
+    resolution: {integrity: sha512-uQPm8kcs47jx38atAcWTVxyltQYoPT68y9aWYdV6yWXSyW8mzSat0TL6CiWdZeCdF3KrAvpVtnHbTv4RN+rqdQ==}
     engines: {node: '>=0.10.0'}
 
   /is-stream@2.0.0:
@@ -2589,7 +2591,7 @@ packages:
     dev: true
 
   /isexe@2.0.0:
-    resolution: {integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=}
+    resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
   /isobject@2.1.0:
     resolution: {integrity: sha1-8GVWEJaj8dou9GJy+BXIQNh+DIk=}
@@ -2651,7 +2653,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       archy: 1.0.0
-      cross-spawn: 7.0.1
+      cross-spawn: 7.0.3
       istanbul-lib-coverage: 3.0.0
       make-dir: 3.0.2
       p-map: 3.0.0
@@ -2877,7 +2879,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       currently-unhandled: 0.4.1
-      signal-exit: 3.0.2
+      signal-exit: 3.0.3
     dev: true
 
   /lru-cache@4.1.5:
@@ -3193,7 +3195,7 @@ packages:
     dev: true
 
   /npm-run-path@2.0.2:
-    resolution: {integrity: sha1-NakjLfo11wZ7TLLd8jV7GHFTbF8=}
+    resolution: {integrity: sha512-lJxZYlT4DW/bRUtFh1MQIWqmLwQfAxnqWG4HhEdjMlkrJYnJn0Jrr2u3mgxqaWsdiBc76TYkTG/mhrnYTuzfHw==}
     engines: {node: '>=4'}
     dependencies:
       path-key: 2.0.1
@@ -3417,12 +3419,12 @@ packages:
     dev: true
 
   /once@1.4.0:
-    resolution: {integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=}
+    resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
     dependencies:
       wrappy: 1.0.2
 
   /onetime@2.0.1:
-    resolution: {integrity: sha1-BnQoIw/WdEOyeUsiu6UotoZ5YtQ=}
+    resolution: {integrity: sha512-oyyPpiMaKARvvcgip+JV+7zci5L8D1W9RZIz2l1o08AM3pfspitVWnPt3mzHcBPp12oYMTy0pqrFs/C+m3EwsQ==}
     engines: {node: '>=4'}
     dependencies:
       mimic-fn: 1.2.0
@@ -3467,7 +3469,7 @@ packages:
     dev: true
 
   /p-finally@1.0.0:
-    resolution: {integrity: sha1-P7z7FbiZpEEjs0ttzBi3JDNqLK4=}
+    resolution: {integrity: sha512-LICb2p9CB7FS+0eR1oqWnHhp0FljGLZCWBE9aix0Uye9W8LTQPwMTYVGWQWIw9RdQiDg4+epXQODwIYJtSJaow==}
     engines: {node: '>=4'}
 
   /p-is-promise@3.0.0:
@@ -3621,11 +3623,11 @@ packages:
     dev: true
 
   /path-is-absolute@1.0.1:
-    resolution: {integrity: sha1-F0uSaHNVNP+8es5r9TpanhtcX18=}
+    resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==}
     engines: {node: '>=0.10.0'}
 
   /path-key@2.0.1:
-    resolution: {integrity: sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=}
+    resolution: {integrity: sha512-fEHGKCSmUSDPv4uoj8AlD+joPlq3peND+HRYyxFz4KPw4z926S/b8rIuFs2FYJg3BwsxJf6A9/3eIdLaYC+9Dw==}
     engines: {node: '>=4'}
 
   /path-key@3.1.1:
@@ -3742,7 +3744,7 @@ packages:
     dev: true
 
   /pseudomap@1.0.2:
-    resolution: {integrity: sha1-8FKijacOYYkX7wqKw0wa5aaChrM=}
+    resolution: {integrity: sha512-b/YwNhb8lk1Zz2+bXXpS/LK9OisiZZ1SNsSLxN1x2OXVEhW2Ckr/7mWE5vrC1ZTiJlD9g19jWszTmJsB+oEpFQ==}
     dev: false
 
   /pump@3.0.0:
@@ -3870,6 +3872,7 @@ packages:
 
   /regenerator-runtime@0.11.1:
     resolution: {integrity: sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -3929,6 +3932,7 @@ packages:
   /resolve-from@3.0.0:
     resolution: {integrity: sha1-six699nWiBvItuZTM17rywoYh0g=}
     engines: {node: '>=4'}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -3945,6 +3949,7 @@ packages:
   /resolve-global@1.0.0:
     resolution: {integrity: sha512-zFa12V4OLtT5XUX/Q4VLvTfBf+Ok0SPc1FNGM/z9ctUdiU618qwKpWnd0CHs3+RqROfyEg/DhuHbMWYqcgljEw==}
     engines: {node: '>=8'}
+    requiresBuild: true
     dependencies:
       global-dirs: 0.1.1
     dev: true
@@ -3965,7 +3970,7 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       onetime: 2.0.1
-      signal-exit: 3.0.2
+      signal-exit: 3.0.3
     dev: true
 
   /ret@0.1.15:
@@ -4113,7 +4118,7 @@ packages:
     dev: true
 
   /shebang-command@1.2.0:
-    resolution: {integrity: sha1-RKrGW2lbAzmJaMOfNj/uXer98eo=}
+    resolution: {integrity: sha512-EV3L1+UQWGor21OmnvojK36mhg+TyIKDh3iFBKBohr5xeXIhNBcx8oWdgkTEEQ+BEFFYdLRuqMfd5L84N1V5Vg==}
     engines: {node: '>=0.10.0'}
     dependencies:
       shebang-regex: 1.0.0
@@ -4125,7 +4130,7 @@ packages:
       shebang-regex: 3.0.0
 
   /shebang-regex@1.0.0:
-    resolution: {integrity: sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=}
+    resolution: {integrity: sha512-wpoSFAxys6b2a2wHZ1XpDSgD7N9iVjg29Ph9uV/uaP9Ex/KXlkTZTeddxDPSYQpgvzKLGJke2UU0AzoGCjNIvQ==}
     engines: {node: '>=0.10.0'}
 
   /shebang-regex@3.0.0:
@@ -4134,10 +4139,10 @@ packages:
 
   /signal-exit@3.0.2:
     resolution: {integrity: sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=}
+    dev: true
 
   /signal-exit@3.0.3:
     resolution: {integrity: sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==}
-    dev: true
 
   /signale@1.4.0:
     resolution: {integrity: sha512-iuh+gPf28RkltuJC7W5MRi6XAjTDCAPC/prJUpQoG4vIP3MJZ+GTydVnodXA7pwvTKb2cA0m9OFZW/cdWy/I/w==}
@@ -4228,7 +4233,7 @@ packages:
       is-windows: 1.0.2
       make-dir: 3.0.2
       rimraf: 3.0.2
-      signal-exit: 3.0.2
+      signal-exit: 3.0.3
       which: 2.0.2
     dev: true
 
@@ -4401,7 +4406,7 @@ packages:
     dev: true
 
   /strip-eof@1.0.0:
-    resolution: {integrity: sha1-u0P/VZim6wXYm1n80SnJgzE2Br8=}
+    resolution: {integrity: sha512-7FCwGGmx8mD5xQd3RPUvnSpUXHM3BWuzjtpD4TXsfcZ9EL4azvVVUscFYwD9nx8Kh+uCBC00XBtAykoMHwTh8Q==}
     engines: {node: '>=0.10.0'}
 
   /strip-final-newline@2.0.0:
@@ -4796,7 +4801,7 @@ packages:
     dev: false
 
   /wrappy@1.0.2:
-    resolution: {integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=}
+    resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
   /write-file-atomic@3.0.3:
     resolution: {integrity: sha512-AvHcyZ5JnSfq3ioSyjrBkH9yW4m7Ayk8/9My/DD9onKeu/94fwrMocemO2QAJFAlnnDN+ZDS+ZjAR5ua1/PV/Q==}
@@ -4822,7 +4827,7 @@ packages:
     dev: false
 
   /yallist@2.1.2:
-    resolution: {integrity: sha1-HBH5IY8HYImkfdUS+TxmmaaoHVI=}
+    resolution: {integrity: sha512-ncTzHV7NvsQZkYe1DW7cbDLm0YpzHmZF5r/iyP3ZnQtMiJ+pjzisCiMNI+Sj+xQF5pXhSHxSB3uDbsBTzY/c2A==}
     dev: false
 
   /yallist@3.1.1:
